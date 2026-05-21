@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: hsl(226 44% 7%);
+  --color-foreground: hsl(210 40% 98%);
+
+  --color-card: hsl(217 33% 11%);
+  --color-card-foreground: hsl(210 40% 98%);
+
+  --color-popover: hsl(217 33% 11%);
+  --color-popover-foreground: hsl(210 40% 98%);
+
+  --color-primary: hsl(38 92% 50%);
+  --color-primary-foreground: hsl(210 40% 98%);
+
+  --color-secondary: hsl(217 33% 17%);
+  --color-secondary-foreground: hsl(210 40% 98%);
+
+  --color-muted: hsl(217 33% 17%);
+  --color-muted-foreground: hsl(215 20.2% 65.1%);
+
+  --color-accent: hsl(38 92% 50%);
+  --color-accent-foreground: hsl(210 40% 98%);
+
+  --color-destructive: hsl(0 84% 60%);
+  --color-destructive-foreground: hsl(210 40% 98%);
+
+  --color-border: hsl(38 92% 50% / 0.2);
+  --color-input: hsl(217 33% 17%);
+  --color-ring: hsl(38 92% 50%);
+
+  --radius-lg: 0.5rem;
+  --radius-md: calc(0.5rem - 2px);
+  --radius-sm: calc(0.5rem - 4px);
+}
+
+@layer base {
+  :root {
+    --background: 226 44% 7%;
+    --foreground: 210 40% 98%;
+    --card: 217 33% 11%;
+    --card-foreground: 210 40% 98%;
+    --popover: 217 33% 11%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 38 92% 50%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 38 92% 50%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 38 92% 50% / 0.2;
+    --input: 217 33% 17%;
+    --ring: 38 92% 50%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased selection:bg-primary/30 selection:text-primary;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(245, 158, 11, 0.05) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(217, 119, 6, 0.05) 0px, transparent 50%);
+    background-attachment: fixed;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Glassmorphism Utilities */
+.glass {
+  @apply bg-card/80 backdrop-blur-md border border-border/30;
+}
+
+.glass-hover:hover {
+  @apply border-primary/50 shadow-[0_0_15px_rgba(245,158,11,0.15)] transition-all duration-300;
+}
+
+/* Animations */
+.shimmer-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: rotate(45deg);
+  transition: all 0.5s ease;
+  opacity: 0;
+}
+
+.shimmer-btn:hover::after {
+  opacity: 1;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) rotate(45deg); }
+}
